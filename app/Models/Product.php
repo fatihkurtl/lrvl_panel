@@ -20,6 +20,7 @@ class Product extends Model
         'stock',
         'color',
         'description',
+        'active',
         'created_at',
         'updated_at',
     ];

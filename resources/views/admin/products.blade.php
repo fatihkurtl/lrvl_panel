@@ -46,15 +46,15 @@
                                     <label for="checkbox-all" class="sr-only">checkbox</label>
                                 </div>
                             </th>
-                            <th scope="col" class="px-4 py-3">Product</th>
-                            <th scope="col" class="px-4 py-3">Category</th>
-                            <th scope="col" class="px-4 py-3">Stock</th>
-                            <th scope="col" class="px-4 py-3">Sales/Day</th>
-                            <th scope="col" class="px-4 py-3">Sales/Month</th>
-                            <th scope="col" class="px-4 py-3">Rating</th>
-                            <th scope="col" class="px-4 py-3">Sales</th>
-                            <th scope="col" class="px-4 py-3">Revenue</th>
-                            <th scope="col" class="px-4 py-3">Last Update</th>
+                            <th scope="col" class="px-4 py-3">Ürün</th>
+                            <th scope="col" class="px-4 py-3">Kategori</th>
+                            <th scope="col" class="px-4 py-3">Stok</th>
+                            <th scope="col" class="px-4 py-3">Satış/Günlük</th>
+                            <th scope="col" class="px-4 py-3">Satış/Aylık</th>
+                            <th scope="col" class="px-4 py-3">Durum</th>
+                            <th scope="col" class="px-4 py-3">Toplam</th>
+                            <th scope="col" class="px-4 py-3">Gelir</th>
+                            <th scope="col" class="px-4 py-3">Son Güncelleme</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -78,30 +78,15 @@
                             </td>
                             <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 <div class="flex items-center">
-                                    <div class="inline-block w-4 h-4 mr-2 {{ $product->stock > 50 ? 'bg-green-500' : 'bg-red-700' }} rounded-full"></div>
+                                    <div class="inline-block w-4 h-4 mr-2 {{ $product->stock > 50 ? 'bg-green-500' : 'bg-red-700' }} text-xs font-medium px-2 py-0.5 text-center rounded"></div>
                                     {{ $product->stock }}
                                 </div>
                             </td>
                             <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">1.47</td>
                             <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">0.47</td>
                             <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <div class="flex items-center">
-                                    <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                    </svg>
-                                    <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                    </svg>
-                                    <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                    </svg>
-                                    <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                    </svg>
-                                    <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                    </svg>
-                                    <span class="ml-1 text-gray-500 dark:text-gray-400">5.0</span>
+                                <div class="{{ $product->active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }} text-xs font-medium px-2 py-0.5 text-center rounded">
+                                    {{ $product->active ? 'Aktif' : 'Pasif' }}
                                 </div>
                             </td>
                             <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">

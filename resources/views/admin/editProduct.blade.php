@@ -58,7 +58,15 @@
                 <div>
                     <label for="color" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Renk</label>
                     <input type="text" name="color" id="color" value="{{ old('color', $product->color) }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Mavi">
-                </div> 
+                </div>
+                <div class="max-w-sm">
+                    <label for="active" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ürün Durumu</label>
+                    <select name="active" id="active" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <option value="" disabled>Durum seçin...</option>
+                        <option value="1" {{ old('active', $product->active) == 1 ? 'selected' : '' }}>Aktif</option>
+                        <option value="0" {{ old('active', $product->active) == 0 ? 'selected' : '' }}>Pasif</option>
+                    </select>
+                </div>                
                 <div class="sm:col-span-2">
                     <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Açıklama</label>
                     <textarea name="description" id="description" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Ürün açıklaması...">{{ old('description', $product->description) }}</textarea>

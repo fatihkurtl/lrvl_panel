@@ -42,10 +42,12 @@ class ProductController extends Controller
             'stock' => 'required|numeric',
             'color' => 'nullable|string|max:255',
             'description' => 'required|string',
+            'active' => 'required|boolean',
         ], [
             'image.mimes' => 'Yüklenen resim jpeg, png, jpg, gif, svg uzantılı olmalıdır.',
             'image.max' => 'Yüklenen resim 2 MB den fazla olmamalıdır.',
             'image.required' => 'Yüklenen resim mevcut olmalıdır.',
+            'active.required' => 'Durum alanı zorunludur.',
         ]);
 
         if ($request->file('image')) {
@@ -62,6 +64,7 @@ class ProductController extends Controller
             'stock' => $request->stock,
             'color' => $request->color,
             'description' => $request->description,
+            'active' => $request->active,
         ]);
 
         return redirect()->route('create-product')->with('success', 'Ürün başarıyla oluşturuldu.');
@@ -98,9 +101,11 @@ class ProductController extends Controller
             'stock' => 'required|numeric',
             'color' => 'nullable|string|max:255',
             'description' => 'required|string',
+            'active' => 'required|boolean',
         ], [
             'image.mimes' => 'Yüklenen resim jpeg, png, jpg, gif, svg uzantılı olmalıdır.',
             'image.max' => 'Yüklenen resim 2 MB den fazla olmamalıdır.',
+            'active.required' => 'Durum alanı zorunludur.',
         ]);
 
         $product = Product::findOrFail($id);
@@ -125,6 +130,7 @@ class ProductController extends Controller
             'stock' => $request->stock,
             'color' => $request->color,
             'description' => $request->description,
+            'active' => $request->active,
         ]);
 
         return redirect()->route('edit-product', ['product' => $product->id])->with('success', 'Ürün güncellendi.');
