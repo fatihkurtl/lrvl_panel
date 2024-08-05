@@ -11,7 +11,7 @@
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",
-        "APP_URL": "https://lrvl_app.com",
+        "APP_URL": "https://yourprojectdomain.com",
         "APP_KEY": "base64:ejiR1XCZloB5MpNx+yp1vMLl1Eyj0+m26RgPiCmwx5Q=",
 
         "APP_CONFIG_CACHE": "/tmp/config.php",
