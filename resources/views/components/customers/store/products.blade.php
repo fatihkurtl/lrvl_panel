@@ -318,10 +318,9 @@
                 <div class="flex items-center space-x-4 rounded-b p-4 dark:border-gray-600 md:p-5">
                     <button type="submit"
                         class="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-700 dark:hover:bg-blue-800 dark:focus:ring-blue-800">
-                      Filtrele
-                      </button>
-                    <button type="reset"
-                    onclick="window.location.href='{{ route('customers-store') }}'"
+                        Filtrele
+                    </button>
+                    <button type="reset" onclick="window.location.href='{{ route('customers-store') }}'"
                         class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">Reset</button>
                 </div>
             </div>
