@@ -37,7 +37,7 @@ Route::prefix('admin')->group(function () {
 
 
 Route::get('/', [CustomersController::class, 'index'])->name('customers-index');
-Route::get('/magaza', [CustomersController::class, 'shopIndex'])->name('customers-store');
+Route::get('/magaza/{category?}', [CustomerProductsController::class, 'index'])->name('customers-store');
 
 Route::get('/urun/{id}', [CustomerProductsController::class, 'productDetailIndex'])->name('product-detail');
 

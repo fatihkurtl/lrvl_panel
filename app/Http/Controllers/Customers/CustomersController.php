@@ -15,11 +15,6 @@ class CustomersController extends Controller
         return view('customers.index');
     }
 
-    public function shopIndex()
-    {
-        return view('customers.store');
-    }
-
     public function shoppingCartIndex()
     {
         return view('customers.cart');

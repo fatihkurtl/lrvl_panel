@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Customers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Product;
+use Illuminate\Support\Facades\DB;
+
 class ProductsController extends Controller
 {
 
@@ -17,9 +20,24 @@ class ProductsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $query = Product::where('active', 1);
+
+        // Check if any categories are selected
+        if ($request->has('kategori') && !empty($request->input('kategori'))) {
+            $query->whereIn('category', $request->input('kategori'));
+        }
+
+        $products = $query->orderBy('created_at', 'desc')->paginate(10);
+
+        // Get all categories and their respective product counts
+        $categories = Product::select('category', DB::raw('count(*) as count'))
+            ->where('active', 1)
+            ->groupBy('category')
+            ->get();
+
+        return view('customers.store', compact('products', 'categories'));
     }
 
     /**
