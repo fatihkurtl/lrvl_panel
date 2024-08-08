@@ -5,30 +5,23 @@ namespace App\Http\Controllers\Customers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CustomersController extends Controller
+class ProductsController extends Controller
 {
+
+    public function productDetailIndex(Request $request, $id)
+    {
+        return view('customers.productDetail');
+    }
+
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('customers.index');
+        //
     }
 
-    public function shopIndex()
-    {
-        return view('customers.store');
-    }
-
-    public function shoppingCartIndex()
-    {
-        return view('customers.cart');
-    }
-    public function paymentIndex()
-    {
-        return view('customers.payment');
-    }
-    
     /**
      * Show the form for creating a new resource.
      */

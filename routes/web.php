@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Customers\CustomersController;
+use App\Http\Controllers\Customers\OrdersController;
+use App\Http\Controllers\Customers\ProductsController as CustomerProductsController;
 
 
 
@@ -36,7 +38,17 @@ Route::prefix('admin')->group(function () {
 
 Route::get('/', [CustomersController::class, 'index'])->name('customers-index');
 Route::get('/magaza', [CustomersController::class, 'shopIndex'])->name('customers-store');
+
+Route::get('/urun/{id}', [CustomerProductsController::class, 'productDetailIndex'])->name('product-detail');
+
+Route::get('/siparislerim', [OrdersController::class, 'index'])->name('orders-index');
 Route::get('/sepet', [CustomersController::class, 'shoppingCartIndex'])->name('customers-cart');
 
+Route::get('/odeme', [CustomersController::class, 'paymentIndex'])->name('customers-payment');
+
+Route::get('/siparisler/ozet/{id}', [OrdersController::class, 'orderSummaryIndex'])->name('orders-summary');
+
+Route::get('/siparislerim/{id}', [OrdersController::class, 'orderConfirmationIndex'])->name('orders-show');
+Route::get('/siparislerim/takip/{id}', [OrdersController::class, 'orderTrackingIndex'])->name('orders-tracking');
 
 require __DIR__ . '/auth.php';

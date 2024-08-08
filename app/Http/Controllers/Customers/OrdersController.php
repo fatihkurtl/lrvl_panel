@@ -5,30 +5,31 @@ namespace App\Http\Controllers\Customers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CustomersController extends Controller
+class OrdersController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('customers.index');
+        return view('customers.order');
     }
 
-    public function shopIndex()
+    public function orderSummaryIndex()
     {
-        return view('customers.store');
+        return view('customers.orderSummary');
     }
 
-    public function shoppingCartIndex()
+    public function orderConfirmationIndex()
     {
-        return view('customers.cart');
+        return view('customers.orderConfirmation');
     }
-    public function paymentIndex()
+
+    public function orderTrackingIndex($order_id)
     {
-        return view('customers.payment');
+        return view('customers.orderTracking');
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
