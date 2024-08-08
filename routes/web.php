@@ -6,28 +6,37 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\CustomersController;
+use App\Http\Controllers\Customers\CustomersController;
 
-Route::get('/giris', [AuthController::class, 'loginIndex'])->name('admin-login');
-Route::post('/giris', [AuthController::class, 'login'])->name('admin-login-create');
 
-Route::get('/uye-ol', [AuthController::class, 'registerIndex'])->name('admin-register');
-Route::post('/uye-ol', [AuthController::class, 'register'])->name('admin-register-create');
 
-Route::get('/cikis', [AuthController::class, 'logout'])->name('admin-logout');
+Route::prefix('admin')->group(function () {
+    Route::get('/giris', [AuthController::class, 'loginIndex'])->name('admin-login');
+    Route::post('/giris', [AuthController::class, 'login'])->name('admin-login-create');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('admin-dashboard');
-    Route::get('/musteriler', [CustomersController::class, 'index'])->name('admin-customers');
-    Route::get('/faturalar', [AdminController::class, 'invoicesIndex'])->name('admin-invoices');
-    Route::get('/urunler', [ProductController::class, 'index'])->name('products');
+    Route::get('/uye-ol', [AuthController::class, 'registerIndex'])->name('admin-register');
+    Route::post('/uye-ol', [AuthController::class, 'register'])->name('admin-register-create');
 
-    Route::get('/urun/ekle', [ProductController::class, 'create'])->name('create-product');
-    Route::post('/urun/ekle', [ProductController::class, 'store'])->name('store-product');
+    Route::get('/cikis', [AuthController::class, 'logout'])->name('admin-logout');
 
-    Route::get('/urun/{product}', [ProductController::class, 'edit'])->name('edit-product');
-    Route::put('/urun/{product}', [ProductController::class, 'update'])->name('update-product');
+    Route::middleware('auth')->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'index'])->name('admin-dashboard');
+        Route::get('/musteriler', [CustomersController::class, 'index'])->name('admin-customers');
+        Route::get('/faturalar', [AdminController::class, 'invoicesIndex'])->name('admin-invoices');
+        Route::get('/urunler', [ProductController::class, 'index'])->name('admin-products');
+
+        Route::get('/urun/ekle', [ProductController::class, 'create'])->name('admin-create-product');
+        Route::post('/urun/ekle', [ProductController::class, 'store'])->name('admin-store-product');
+
+        Route::get('/urun/{product}', [ProductController::class, 'edit'])->name('admin-edit-product');
+        Route::put('/urun/{product}', [ProductController::class, 'update'])->name('admin-update-product');
+    });
 });
+
+
+Route::get('/', [CustomersController::class, 'index'])->name('customers-index');
+Route::get('/magaza', [CustomersController::class, 'shopIndex'])->name('customers-store');
+Route::get('/sepet', [CustomersController::class, 'shoppingCartIndex'])->name('customers-cart');
 
 
 require __DIR__ . '/auth.php';

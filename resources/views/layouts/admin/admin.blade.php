@@ -17,8 +17,8 @@
 </head>
 
 <body class="font-sans antialiased bg-gray-50">
-    @include('layouts.navbar')
-    @include('layouts.sidebar')
+    @include('layouts.admin.navbar')
+    @include('layouts.admin.sidebar')
     <div class="sm:ml-64">
         <div class="rounded-lg dark:border-gray-700 mt-14">
             @yield('content')

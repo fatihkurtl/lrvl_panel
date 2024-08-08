@@ -67,7 +67,7 @@ class ProductController extends Controller
             'active' => $request->active,
         ]);
 
-        return redirect()->route('create-product')->with('success', 'Ürün başarıyla oluşturuldu.');
+        return redirect()->route('admin-create-product')->with('success', 'Ürün başarıyla oluşturuldu.');
     }
 
     /**
@@ -133,7 +133,7 @@ class ProductController extends Controller
             'active' => $request->active,
         ]);
 
-        return redirect()->route('edit-product', ['product' => $product->id])->with('success', 'Ürün güncellendi.');
+        return redirect()->route('admin-edit-product', ['product' => $product->id])->with('success', 'Ürün güncellendi.');
     }
 
     /**
