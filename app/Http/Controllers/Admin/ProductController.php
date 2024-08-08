@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\ValidationHelper;
 
 class ProductController extends Controller
 {
@@ -15,9 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-            $products = Product::orderBy('created_at', 'desc')->paginate(10);
-            $unPaginatedProducts = Product::orderBy('created_at', 'desc')->get();
-            return view('admin.products', compact('products', 'unPaginatedProducts'));
+        $products = Product::orderBy('created_at', 'desc')->paginate(10);
+        $unPaginatedProducts = Product::orderBy('created_at', 'desc')->get();
+        return view('admin.products', compact('products', 'unPaginatedProducts'));
     }
 
     /**
@@ -33,22 +34,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'price' => 'required|numeric',
-            'category' => 'required|string|max:255',
-            'weight' => 'required|numeric',
-            'stock' => 'required|numeric',
-            'color' => 'nullable|string|max:255',
-            'description' => 'required|string',
-            'active' => 'required|boolean',
-        ], [
-            'image.mimes' => 'Yüklenen resim jpeg, png, jpg, gif, svg uzantılı olmalıdır.',
-            'image.max' => 'Yüklenen resim 2 MB den fazla olmamalıdır.',
-            'image.required' => 'Yüklenen resim mevcut olmalıdır.',
-            'active.required' => 'Durum alanı zorunludur.',
-        ]);
+        ValidationHelper::validateProduct($request);
 
         if ($request->file('image')) {
             $imagePath = $request->file('image')->store('products', 'public');
@@ -92,21 +78,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'price' => 'required|numeric',
-            'category' => 'required|string|max:255',
-            'weight' => 'required|numeric',
-            'stock' => 'required|numeric',
-            'color' => 'nullable|string|max:255',
-            'description' => 'required|string',
-            'active' => 'required|boolean',
-        ], [
-            'image.mimes' => 'Yüklenen resim jpeg, png, jpg, gif, svg uzantılı olmalıdır.',
-            'image.max' => 'Yüklenen resim 2 MB den fazla olmamalıdır.',
-            'active.required' => 'Durum alanı zorunludur.',
-        ]);
+        ValidationHelper::validateProduct($request);
 
         $product = Product::findOrFail($id);
 
