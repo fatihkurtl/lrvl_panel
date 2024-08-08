@@ -8,9 +8,16 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\ValidationHelper;
+use App\Services\ImageUploadService;
 
 class ProductController extends Controller
 {
+    protected $imageUploadService;
+
+    public function __construct(ImageUploadService $imageUploadService)
+    {
+        $this->imageUploadService = $imageUploadService;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -36,8 +43,10 @@ class ProductController extends Controller
     {
         ValidationHelper::validateProduct($request);
 
-        if ($request->file('image')) {
-            $imagePath = $request->file('image')->store('products', 'public');
+        $imagePath = null;
+
+        if ($request->hasFile('image')) {
+            $imagePath = $this->imageUploadService->imageUpload($request->file('image'));
         }
 
         Product::create([
@@ -84,12 +93,16 @@ class ProductController extends Controller
 
         $imagePath = $product->image;
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('products', 'public');
+        // if ($request->hasFile('image')) {
+        //     $imagePath = $request->file('image')->store('products', 'public');
 
-            if (file_exists(public_path($product->image))) {
-                unlink(public_path($product->image));
-            }
+        //     if (file_exists(public_path($product->image))) {
+        //         unlink(public_path($product->image));
+        //     }
+        // }
+        
+        if ($request->hasFile('image')) {
+            $imagePath = $this->imageUploadService->imageUpload($request->file('image'), $product->image);
         }
 
         $product->update([
