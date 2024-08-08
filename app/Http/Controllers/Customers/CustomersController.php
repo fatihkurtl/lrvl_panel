@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Customers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 
 class CustomersController extends Controller
 {
@@ -12,12 +14,12 @@ class CustomersController extends Controller
      */
     public function index()
     {
-        return view('customers.index');
-    }
+        $categories = Product::select('category', DB::raw('count(*) as count'))
+            ->where('active', 1)
+            ->groupBy('category')
+            ->get();
 
-    public function shoppingCartIndex()
-    {
-        return view('customers.cart');
+        return view('customers.index', compact('categories'));
     }
     public function paymentIndex()
     {

@@ -41,8 +41,11 @@ Route::get('/magaza/{category?}', [CustomerProductsController::class, 'index'])-
 
 Route::get('/urun/{id}', [CustomerProductsController::class, 'productDetailIndex'])->name('product-detail');
 
+Route::get('/sepet', function () {
+    return view('layouts.customers.cartLayout');
+});
+
 Route::get('/siparislerim', [OrdersController::class, 'index'])->name('orders-index');
-Route::get('/sepet', [CustomersController::class, 'shoppingCartIndex'])->name('customers-cart');
 
 Route::get('/odeme', [CustomersController::class, 'paymentIndex'])->name('customers-payment');
 

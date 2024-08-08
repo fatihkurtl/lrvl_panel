@@ -11,6 +11,8 @@ export default {
         "./resources/**/*.js",
         "./resources/**/*.vue",
         "./node_modules/flowbite/**/*.js",
+        "./index.html",
+        "./resources/js/components/**/*.{vue,js,ts,jsx,tsx}",
     ],
 
     theme: {
@@ -21,5 +23,5 @@ export default {
         },
     },
 
-    plugins: [forms, require('flowbite/plugin')],
+    plugins: [forms, require("flowbite/plugin")],
 };

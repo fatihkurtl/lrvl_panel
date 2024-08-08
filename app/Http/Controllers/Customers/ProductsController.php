@@ -24,14 +24,12 @@ class ProductsController extends Controller
     {
         $query = Product::where('active', 1);
 
-        // Check if any categories are selected
         if ($request->has('kategori') && !empty($request->input('kategori'))) {
             $query->whereIn('category', $request->input('kategori'));
         }
 
         $products = $query->orderBy('created_at', 'desc')->paginate(10);
 
-        // Get all categories and their respective product counts
         $categories = Product::select('category', DB::raw('count(*) as count'))
             ->where('active', 1)
             ->groupBy('category')
