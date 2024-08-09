@@ -12,12 +12,12 @@
   
           <ul class="hidden lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center">
             <li>
-              <a href="{{ route('customers-index') }}" title="" class="{{ request()->routeIs('customers-index') ? 'text-blue-700':'' }} flex text-sm font-medium text-gray-900 hover:text-blue-700 dark:text-white dark:hover:text-blue-500">
+              <a href="{{ route('customers-index') }}" title="" class="{{ request()->routeIs('customers-index') ? 'text-blue-700' : 'text-gray-900' }} flex text-sm font-medium hover:text-blue-700 dark:text-white dark:hover:text-blue-500">
                 Ana Sayfa
               </a>
             </li>
             <li class="shrink-0">
-              <a href="{{ route('customers-store') }}" title="" class="{{ request()->routeIs('customers-store') ? 'text-blue-700':'' }} flex text-sm font-medium text-gray-900 hover:text-blue-700 dark:text-white dark:hover:text-blue-500">
+              <a href="{{ route('customers-store') }}" title="" class="{{ request()->routeIs('customers-store') ? 'text-blue-700' : 'text-gray-900' }} flex text-sm font-medium hover:text-blue-700 dark:text-white dark:hover:text-blue-500">
                 Mağaza
               </a>
             </li>
@@ -41,7 +41,7 @@
   
         <div class="flex items-center lg:space-x-2">
   
-          <button id="myCartDropdownButton1" data-dropdown-toggle="myCartDropdown1" type="button" class="{{ request()->routeIs('customers-cart') ? 'text-blue-700':'' }} inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-medium leading-none text-gray-900 dark:text-white">
+          <button id="myCartDropdownButton1" data-dropdown-toggle="myCartDropdown1" type="button" class="{{ request()->is('sepet') ? 'text-blue-700' : 'text-gray-900' }} inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-medium leading-none dark:text-white">
             <span class="sr-only">
               Cart
             </span>
