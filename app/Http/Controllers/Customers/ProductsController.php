@@ -22,6 +22,7 @@ class ProductsController extends Controller
      */
     public function index(Request $request)
     {
+        // dd($request->all());
         $query = Product::where('active', 1);
 
         if ($request->has('kategori') && !empty($request->input('kategori'))) {

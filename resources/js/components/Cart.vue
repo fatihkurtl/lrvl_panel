@@ -26,7 +26,6 @@ const decreaseQuantity = () => {
         shoppingCart.quantity--;
     }
 }
-
 </script>
 
 <template>
