@@ -13,7 +13,10 @@ class ProductsController extends Controller
 
     public function productDetailIndex(Request $request, $id)
     {
-        return view('customers.productDetail');
+
+        $product = Product::findOrFail($id);
+
+        return view('customers.productDetail', compact('product'));
     }
 
 
@@ -37,6 +40,13 @@ class ProductsController extends Controller
             ->get();
 
         return view('customers.store', compact('products', 'categories'));
+    }
+
+    public function addCart(Request $request)
+    {
+        $product = $request->input('product_id');
+        $product_quantity = $request->input('quantity');
+        dd($product, $product_quantity);
     }
 
     /**

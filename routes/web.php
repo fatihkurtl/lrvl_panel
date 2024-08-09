@@ -42,6 +42,8 @@ Route::get('/magaza/{category?}', [CustomerProductsController::class, 'index'])-
 
 Route::get('/urun/{id}', [CustomerProductsController::class, 'productDetailIndex'])->name('product-detail');
 
+Route::post('/sepete-ekle', [CustomerProductsController::class, 'addCart'])->name('add-to-cart');
+
 Route::get('/sepet', function () {
     return view('layouts.customers.cartLayout');
 });
