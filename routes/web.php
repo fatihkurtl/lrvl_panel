@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\CustomersController as AdminCustomersController;
 use App\Http\Controllers\Customers\OrdersController;
 use App\Http\Controllers\Customers\ProductsController as CustomerProductsController;
 
+use App\Livewire\CustomerRegisterForm;
+
 
 
 Route::prefix('admin')->group(function () {
@@ -36,6 +38,12 @@ Route::prefix('admin')->group(function () {
     });
 });
 
+
+Route::get('/uye-ol', [CustomerRegisterForm::class, 'render'])->name('customer-register-form');
+
+// Route::get('/uye-ol', function () {
+//     return view('livewire.register');
+// });
 
 Route::get('/', [CustomersController::class, 'index'])->name('customers-index');
 Route::get('/magaza/{category?}', [CustomerProductsController::class, 'index'])->name('customers-store');
