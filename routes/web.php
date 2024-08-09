@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Customers\CustomersController;
+use App\Http\Controllers\Admin\CustomersController as AdminCustomersController;
 use App\Http\Controllers\Customers\OrdersController;
 use App\Http\Controllers\Customers\ProductsController as CustomerProductsController;
 
@@ -23,7 +24,7 @@ Route::prefix('admin')->group(function () {
 
     Route::middleware('auth')->group(function () {
         Route::get('/dashboard', [AdminController::class, 'index'])->name('admin-dashboard');
-        Route::get('/musteriler', [CustomersController::class, 'index'])->name('admin-customers');
+        Route::get('/musteriler', [AdminCustomersController::class, 'index'])->name('admin-customers');
         Route::get('/faturalar', [AdminController::class, 'invoicesIndex'])->name('admin-invoices');
         Route::get('/urunler', [ProductController::class, 'index'])->name('admin-products');
 

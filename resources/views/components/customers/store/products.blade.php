@@ -117,7 +117,7 @@
                 <div
                     class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
                     <div class="h-56 w-full">
-                        <a href="#">
+                        <a href="{{ route('product-detail', [$product->id]) }}">
                             <img class="mx-auto h-full dark:hidden" src="{{ asset('storage/' . $product->image) }}"
                                 alt="{{ $product->name }}" />
                             <img class="mx-auto hidden h-full dark:block"
@@ -169,7 +169,7 @@
                             </div>
                         </div>
 
-                        <a href="{{ route('product-detail', 1) }}"
+                        <a href="{{ route('product-detail', [$product->id]) }}"
                             class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">{{ $product->name }}</a>
 
                         <div class="mt-2 flex items-center gap-2">
