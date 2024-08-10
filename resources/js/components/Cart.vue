@@ -1,7 +1,52 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { ref, reactive } from 'vue';
 import { IShoppingCart, IOrderSummary } from '../interfaces/shopping_cart';
 import Suggestions from './Suggestions.vue';
+import ApiService from '../services/api';
+
+
+interface IProduct {
+  id: number;
+  name: string;
+  image: string;
+  active: number;
+  brand: string;
+  category: string;
+  color: string;
+  created_at: string;
+  description: string;
+  price: string;
+  stock: number;
+  updated_at: string;
+  weight: number;
+}
+
+interface IShoppingCartItem {
+  id: number;
+  product_id: number;
+  quantity: number;
+  customer_id: number | null;
+  product: IProduct;
+  created_at: string;
+  updated_at: string;
+}
+
+const cartItems = ref<IShoppingCartItem[]>([]);
+
+
+const getCartItems = async (): Promise<void> => {
+  try {
+    const response = await ApiService.getCartItems();
+    console.log(response.data.cartItems);
+    cartItems.value = response.data.cartItems;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+getCartItems();
+
 
 const shoppingCart = reactive<IShoppingCart>({
     items: [],
@@ -35,7 +80,7 @@ const decreaseQuantity = () => {
       <div class="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
         <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
           <div class="space-y-6">
-            <div v-if="shoppingCart.items.length > 0"class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
+            <div v-if="shoppingCart.items.length == 0" v-for="item in cartItems" class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
               <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                 <a href="#" class="shrink-0 md:order-1">
                   <img class="h-20 w-20 dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="imac image" />

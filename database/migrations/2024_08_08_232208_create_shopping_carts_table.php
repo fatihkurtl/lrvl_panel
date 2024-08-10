@@ -9,9 +9,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('shopping_carts', function (Blueprint $table) {
-            $table->id(); // `unsignedBigInteger` olarak tanımlar
-            $table->unsignedBigInteger('product_id'); // `unsignedBigInteger`
-            $table->unsignedBigInteger('customer_id'); // `unsignedBigInteger`
+            $table->id();
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('customer_id')->nullable();
             $table->unsignedInteger('quantity')->default(1);
             $table->timestamps();
         

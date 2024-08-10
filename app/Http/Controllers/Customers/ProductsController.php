@@ -3,19 +3,21 @@
 namespace App\Http\Controllers\Customers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 use App\Models\Product;
+use App\Models\ShoppingCart;
 use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends Controller
 {
 
     public function productDetailIndex(Request $request, $id)
     {
-
         $product = Product::findOrFail($id);
-
         return view('customers.productDetail', compact('product'));
     }
 
@@ -32,7 +34,7 @@ class ProductsController extends Controller
             $query->whereIn('category', $request->input('kategori'));
         }
 
-        $products = $query->orderBy('created_at', 'desc')->paginate(10);
+        $products = $query->orderBy('created_at', 'desc')->paginate(12);
 
         $categories = Product::select('category', DB::raw('count(*) as count'))
             ->where('active', 1)
@@ -46,7 +48,44 @@ class ProductsController extends Controller
     {
         $product = $request->input('product_id');
         $product_quantity = $request->input('quantity');
-        dd($product, $product_quantity);
+
+        $request->validate([
+            'product_id' => 'required',
+            'quantity' => 'required',
+            'customer_id' => 'nullable',
+        ]);
+
+        $customer = $request->has('customer_id') && !empty($request->input('customer_id'))
+            ? Customer::findOrFail($request->input('customer_id'))
+            : null;
+
+        $shoppingCartItem = ShoppingCart::where('product_id', $product)
+            ->where('customer_id', $customer->id ?? null)
+            ->first();
+
+        if ($shoppingCartItem) {
+            $shoppingCartItem->quantity += $product_quantity;
+            $shoppingCartItem->save();
+        } else {
+            $shoppingCart = new ShoppingCart();
+            $shoppingCart->product_id = $product;
+            $shoppingCart->quantity = $product_quantity;
+            $shoppingCart->customer_id = $customer->id ?? null;
+            $shoppingCart->save();
+        }
+
+        return redirect()->route('customers-store')->with('success', 'Ürün sepete eklendi.');
+    }
+
+    public function getCartItems()
+    {
+        if (!Auth::check()) {
+            $custommer_id = Auth::id();
+            $cartItems = ShoppingCart::where('customer_id', $custommer_id)->with('product')->get();
+            return response()->json(['cartItems' => $cartItems], 200);
+        } else {
+            return response()->json(['message' => 'Giriş yapmadınız.'], 401);
+        }
     }
 
     /**

@@ -3,7 +3,7 @@
         <!-- Heading & Filters -->
         <div class="mb-4 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">
             <div>
-                <nav class="flex" aria-label="Breadcrumb">
+                {{-- <nav class="flex" aria-label="Breadcrumb">
                     <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                         <li class="inline-flex items-center">
                             <a href="#"
@@ -41,8 +41,8 @@
                             </div>
                         </li>
                     </ol>
-                </nav>
-                <h2 class="mt-3 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Electronics</h2>
+                </nav> --}}
+                <h2 class="mt-3 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Ürünler</h2>
             </div>
             <div class="flex items-center space-x-4">
                 <button data-modal-toggle="filterModal" data-modal-target="filterModal" type="button"
@@ -112,6 +112,11 @@
                 </div>
             </div>
         </div>
+        @if (session('success'))
+            <div class="mt-4 p-4 text-green-600 bg-green-200 rounded">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
             @foreach ($products as $product)
                 <div
@@ -261,7 +266,8 @@
         </div>
     </div>
     <!-- Filter modal -->
-    <form action="{{ route('customers-store') }}" method="GET" id="filterModal" tabindex="-1" aria-hidden="true"
+    <form action="{{ route('customers-store') }}" method="GET" id="filterModal" tabindex="-1"
+        aria-hidden="true"
         class="fixed left-0 right-0 top-0 z-50 hidden h-modal w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0 md:h-full">
         <div class="relative h-full w-full max-w-xl md:h-auto">
             <!-- Modal content -->
