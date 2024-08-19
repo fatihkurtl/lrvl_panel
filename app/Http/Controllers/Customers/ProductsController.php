@@ -77,17 +77,6 @@ class ProductsController extends Controller
         return redirect()->route('customers-store')->with('success', 'Ürün sepete eklendi.');
     }
 
-    public function getCartItems()
-    {
-        if (!Auth::check()) {
-            $custommer_id = Auth::id();
-            $cartItems = ShoppingCart::where('customer_id', $custommer_id)->with('product')->get();
-            return response()->json(['cartItems' => $cartItems], 200);
-        } else {
-            return response()->json(['message' => 'Giriş yapmadınız.'], 401);
-        }
-    }
-
     /**
      * Show the form for creating a new resource.
      */
