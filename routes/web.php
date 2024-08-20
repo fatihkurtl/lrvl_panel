@@ -59,6 +59,7 @@ Route::get('/sepet', function () {
 Route::get('/siparislerim', [OrdersController::class, 'index'])->name('orders-index');
 
 Route::get('/odeme', [CustomersController::class, 'paymentIndex'])->name('customers-payment');
+Route::post('/odeme', [CustomersController::class, 'payment'])->name('customers-payment-create');
 
 Route::get('/siparisler/ozet/{id}', [OrdersController::class, 'orderSummaryIndex'])->name('orders-summary');
 

@@ -108,8 +108,8 @@ const updateQuantity = async (type: string, id: number): Promise<void> => {
               class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
               <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                 <a href="#" class="shrink-0 md:order-1">
-                  <img class="h-20 w-20 dark:hidden"
-                    :src="`http://127.0.0.1:8000/storage/` + item.product.image" :alt="item.product.name" />
+                  <img class="h-20 w-20 dark:hidden" :src="`http://127.0.0.1:8000/storage/` + item.product.image"
+                    :alt="item.product.name" />
                   <img class="hidden h-20 w-20 dark:block"
                     src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="imac image" />
                 </a>
@@ -143,8 +143,9 @@ const updateQuantity = async (type: string, id: number): Promise<void> => {
                 </div>
 
                 <div class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
-                  <a :href="`/urun/${item.product_id}`" class="text-base font-medium text-gray-900 hover:underline dark:text-white">
-                  {{ item.product.name }}</a>
+                  <a :href="`/urun/${item.product_id}`"
+                    class="text-base font-medium text-gray-900 hover:underline dark:text-white">
+                    {{ item.product.name }}</a>
 
                   <div class="flex items-center gap-4">
                     <button type="button"
@@ -193,33 +194,36 @@ const updateQuantity = async (type: string, id: number): Promise<void> => {
                   <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Tasarruf</dt>
                   <dd class="text-base font-medium text-gray-900"
                     :class="{ 'text-green-600': cartSummary?.savings > 0, 'text-red-600': cartSummary?.savings < 0 }">
-                    ${{ cartSummary?.savings.toFixed(2) }}</dd>
+                    ${{ cartSummary?.savings.toFixed(2) }}
+                  </dd>
                 </dl>
 
                 <dl class="flex items-center justify-between gap-4">
                   <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Mağazadan Teslim Alma</dt>
-                  <dd class="text-base font-medium text-gray-900 dark:text-white">${{ cartSummary?.savings.toFixed(2) }}</dd>
+                  <dd class="text-base font-medium text-gray-900 dark:text-white">${{ cartSummary?.savings.toFixed(2) }}
+                  </dd>
                 </dl>
 
                 <dl class="flex items-center justify-between gap-4">
                   <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Vergi</dt>
-                  <dd class="text-base font-medium text-gray-900 dark:text-white">${{ cartSummary?.tax.toFixed(2) }}</dd>
+                  <dd class="text-base font-medium text-gray-900 dark:text-white">${{ cartSummary?.tax.toFixed(2) }}
+                  </dd>
                 </dl>
               </div>
 
-                <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
-                  <dt class="text-base font-bold text-gray-900 dark:text-white">Toplam</dt>
-                  <dd class="text-base font-bold text-gray-900 dark:text-white">${{ cartSummary?.total.toFixed(2) }}</dd>
-                </dl>
+              <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
+                <dt class="text-base font-bold text-gray-900 dark:text-white">Toplam</dt>
+                <dd class="text-base font-bold text-gray-900 dark:text-white">${{ cartSummary?.total.toFixed(2) }}</dd>
+              </dl>
             </div>
 
-            <a href="#"
+            <a href="/odeme"
               class="flex w-full items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ödeme
               İşlemine Geç</a>
 
             <div class="flex items-center justify-center gap-2">
               <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> ya da </span>
-              <a href="{{ route('customers-store') }}" title=""
+              <a href="/magaza" title=""
                 class="inline-flex items-center gap-2 text-sm font-medium text-blue-700 underline hover:no-underline dark:text-blue-500">
                 Alışverişe devam et
                 <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"

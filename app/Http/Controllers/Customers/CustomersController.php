@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
+use App\Models\ShoppingCart;
+use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 
 class CustomersController extends Controller
 {
@@ -23,7 +26,41 @@ class CustomersController extends Controller
     }
     public function paymentIndex()
     {
-        return view('customers.payment');
+        $custommer_id = Auth::id();
+        $cartItems = ShoppingCart::where('customer_id', $custommer_id)->with('product')->get();
+
+        $total = 0;
+            foreach ($cartItems as $cartItem) {
+                $cartItem->total = $cartItem->quantity * $cartItem->product->price;
+                $total += $cartItem->total;
+            }
+
+            $tax = $total * 0.18;
+            $grandTotal = $total + $tax;
+            $originalPrice = $total;
+            $savings = $originalPrice - $grandTotal;
+            
+        return view('customers.payment', compact('total', 'tax', 'grandTotal', 'originalPrice', 'savings'));
+    }
+
+    public function payment(Request $request)
+    {
+        // dd($request->all());
+
+        $message = 'Ödeme basarıyla tamamlandı. Siparişiniz alındı.';
+
+        $shoppingCart = ShoppingCart::where('customer_id', Auth::id())->get();
+        foreach ($shoppingCart as $item) {
+            $order = new Order();
+            $order->product_id = $item->product_id;
+            $order->cart_id = $item->id;
+            $order->total_price = $item->product->price * $item->quantity;
+            $order->status = 'confirmed';
+            $order->save();
+            $item->delete();
+        }
+
+        return view('customers.payment', compact('message'));
     }
     
     /**
