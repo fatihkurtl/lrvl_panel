@@ -35,7 +35,7 @@
                                 <label for="card-number-input"
                                     class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Kart numarası*
                                 </label>
-                                <input type="text" id="card-number-input" name="cart_number"
+                                <input type="text" id="cart_number" name="cart_number"
                                     class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pe-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                                     placeholder="xxxx-xxxx-xxxx-xxxx" />
                             </div>
@@ -54,7 +54,7 @@
                                                 clip-rule="evenodd" />
                                         </svg>
                                     </div>
-                                    <input datepicker datepicker-format="mm/yy" id="card-expiration-input"
+                                    <input datepicker datepicker-format="mm/yy" id="expiration_date"
                                         name="expiration_date" type="text"
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 ps-9 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                                         placeholder="12/23" required />
@@ -79,12 +79,12 @@
                                         <div class="tooltip-arrow" data-popper-arrow></div>
                                     </div>
                                 </label>
-                                <input type="number" id="cvv-input" name="cvv"
+                                <input type="number" id="cvv" name="cvv"
                                     aria-describedby="helper-text-explanation"
                                     class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                                     placeholder="•••" required />
                             </div>
-                            <input type="hidden" name="price" value="{{ isset($total) ? $total : 0 }}" />
+                            <input type="hidden" id="total_price" name="total_price" value="{{ isset($total) ? $total : 0 }}" />
                         </div>
                         <button type="submit"
                             class="flex w-full items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4  focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Şimdi

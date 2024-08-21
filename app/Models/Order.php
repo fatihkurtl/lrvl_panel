@@ -16,4 +16,14 @@ class Order extends Model
         'status',
         'total_price',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function shoppingCart()
+    {
+        return $this->belongsTo(ShoppingCart::class);
+    }
 }

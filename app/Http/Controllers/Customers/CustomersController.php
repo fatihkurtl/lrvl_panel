@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use App\Models\ShoppingCart;
 use App\Models\Order;
+use App\Models\Payment;
 use Illuminate\Support\Facades\Auth;
 
 class CustomersController extends Controller
@@ -45,7 +46,28 @@ class CustomersController extends Controller
 
     public function payment(Request $request)
     {
-        // dd($request->all());
+        $request->validate([
+            'full_name' => 'required',
+            'cart_number' => 'required',
+            'expiration_date' => 'required',
+            'cvv' => 'required',
+            'total_price' => 'required',
+        ], [
+            'full_name.required' => 'Ad soyad alanı zorunludur.',
+            'cart_number.required' => 'Kart numarası alanı zorunludur.',
+            'expiration_date.required' => 'Son kullanım tarihi alanı zorunludur.',
+            'cvv.required' => 'CVV alanı zorunludur.',
+        ]);
+
+        $paymentInfo = [
+            'full_name' => $request->input('full_name'),
+            'cart_number' => $request->input('cart_number'),
+            'expiration_date' => $request->input('expiration_date'),
+            'cvv' => $request->input('cvv'),
+            'total_price' => $request->input('total_price'),
+        ];
+
+        Payment::create($paymentInfo);
 
         $message = 'Ödeme basarıyla tamamlandı. Siparişiniz alındı.';
 
@@ -55,10 +77,10 @@ class CustomersController extends Controller
             $order->product_id = $item->product_id;
             $order->cart_id = $item->id;
             $order->total_price = $item->product->price * $item->quantity;
-            $order->status = 'confirmed';
+            $order->status = 'active';
             $order->save();
             $item->delete();
-        }
+        }             
 
         return view('customers.payment', compact('message'));
     }
